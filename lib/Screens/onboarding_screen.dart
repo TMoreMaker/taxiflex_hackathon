@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -42,7 +41,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 width: double.maxFinite,
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
-                  stops: [0.5, 1],
+                  stops: const [0.5, 1],
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [Theme.of(context).canvasColor, Colors.transparent],
