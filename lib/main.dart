@@ -1,9 +1,11 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:taxiflex/Screens/screens.dart';
 
-void main() {
+void main() async {
+  await HiveStore.openBox;
   runApp(const MyApp());
 }
 
@@ -25,8 +27,8 @@ class MyApp extends StatelessWidget {
           blendOnColors: false,
           elevatedButtonRadius: 10.0,
           outlinedButtonRadius: 10.0,
-              inputDecoratorBorderType: FlexInputBorderType.underline,
-    inputDecoratorUnfocusedBorderIsColored: false,
+          inputDecoratorBorderType: FlexInputBorderType.underline,
+          inputDecoratorUnfocusedBorderIsColored: false,
           dialogRadius: 10.0,
           timePickerDialogRadius: 10.0,
         ),
@@ -44,8 +46,8 @@ class MyApp extends StatelessWidget {
           blendOnLevel: 30,
           elevatedButtonRadius: 10.0,
           outlinedButtonRadius: 10.0,
-              inputDecoratorBorderType: FlexInputBorderType.underline,
-    inputDecoratorUnfocusedBorderIsColored: false,
+          inputDecoratorBorderType: FlexInputBorderType.underline,
+          inputDecoratorUnfocusedBorderIsColored: false,
           dialogRadius: 10.0,
           timePickerDialogRadius: 10.0,
         ),
