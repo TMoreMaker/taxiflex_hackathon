@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:taxiflex/Screens/screens.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -14,6 +14,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     "img_2.jpg",
     "img_3.jpg",
   ];
+
+  List text = [
+    "Find a taxi anywhere",
+    "Skip the ATM queues",
+    "Pay for your taxi in the app"
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,10 +62,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "Always find\nyour taxi",
-                            style: TextStyle(
-                                fontSize: 32, fontWeight: FontWeight.w700),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.70,
+                            child: Text(
+                              text[index],
+                              softWrap: true,
+                              maxLines: 2,
+                              style: const TextStyle(
+                                  fontSize: 32, fontWeight: FontWeight.w700),
+                            ),
                           ),
                           const SizedBox(height: 20),
                           TextButton(
@@ -93,14 +105,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 ),
               ),
               Visibility(
-                visible: index == 2 ? true:false,
+                visible: index == 2 ? true : false,
                 child: Positioned(
                   bottom: 70,
                   right: 20,
                   left: 20,
                   child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Text("Go To Home",style: TextStyle(fontWeight: FontWeight.w600),),
+                    onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const LandingScreen(),
+                  ),
+                ),
+                    child: const Text(
+                      "Done",
+                      style: TextStyle(fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ),
               ),

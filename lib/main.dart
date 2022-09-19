@@ -1,17 +1,45 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:rapyd/rapyd.dart';
 import 'package:taxiflex/Screens/screens.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:taxiflex/Services/services.dart';
+import 'Helper/secrets.dart';
+import 'firebase_options.dart';
+
+RapydClient rapydClient = RapydClient(
+  rapydAccessKey,
+  rapydSecretKey,
+);
 
 void main() async {
-  await HiveStore.openBox;
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MultiProvider(
+    providers: [
+      Provider(create: (_) => StartLocationService()),
+      Provider(create: (_) => ShortRouteService()),
+      Provider(create: (_) => OrderServices()),
+      ChangeNotifierProvider(create: (_) => SignInProvider()),
+      ChangeNotifierProvider(create: (_) => StartSelectionService()),
+      ChangeNotifierProvider(create: (_) => InternetProvider()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -56,7 +84,7 @@ class MyApp extends StatelessWidget {
         fontFamily: GoogleFonts.poppins().fontFamily,
       ),
       themeMode: ThemeMode.system,
-      home: HomeScreen(),
+      home: const SplashScreen(),
     );
   }
 }
