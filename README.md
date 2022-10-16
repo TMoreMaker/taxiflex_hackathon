@@ -1,14 +1,15 @@
 # taxiflex
 
+Testing details no longer public
 
 ## Sign In Instructions
 The following phone number & sms pins can be used by testers
 
-phone driver: (+27)650-555-234 
-pin driver: 333 333
+phone driver: 
+pin driver: 
 
-phone rider: (+27) 585-444-333
-pin rider: 444 444
+phone rider: 
+pin rider: 
 
 ##To run on your computer
 - Make sure you have the *[Flutter SDK](https://docs.flutter.dev/get-started/install)* installed and configured on your system.
