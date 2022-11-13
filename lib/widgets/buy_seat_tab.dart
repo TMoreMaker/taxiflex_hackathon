@@ -2,13 +2,10 @@ import 'package:action_slider/action_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:taxiflex/Models/short_route_model.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
 import '../Screens/checkout_page.dart';
-import '../Services/services.dart';
 import '../Utils/rapyd.dart';
 
 class BuySeatTab extends StatefulWidget {

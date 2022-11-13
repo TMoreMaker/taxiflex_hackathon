@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:provider/provider.dart';
 import 'package:taxiflex/Screens/screens.dart';
+import 'package:unicons/unicons.dart';
 
 import '../Services/services.dart';
 
@@ -31,8 +32,7 @@ class _HomeNavState extends State<HomeNav> {
   final screens = [
     const MapScreen(),
      const PastOrdersScreen(),
-    const AllRoutesScreen(),
-    const QRScanScreen(),
+     AllRoutesScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -43,14 +43,14 @@ class _HomeNavState extends State<HomeNav> {
         onTap: (index) => setState(() {
           currentIndex = index;
         }),
-        snakeShape: SnakeShape.circle,
+        snakeShape: SnakeShape.indicator,
+        showSelectedLabels: false,
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(UniconsLine.estate), label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.history), label: 'Past orders'),
+              icon: Icon(UniconsLine.history), label: 'Past Orders'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.list_rounded), label: 'All routes'),
-          BottomNavigationBarItem(icon: Icon(Icons.qr_code_rounded), label: 'Search')
+              icon: Icon(UniconsLine.user_location), label: 'Near Me'),
         ],
       ),
       body: IndexedStack(

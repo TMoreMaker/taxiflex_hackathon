@@ -1,6 +1,5 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:rapyd/rapyd.dart';
 import 'package:taxiflex/Screens/screens.dart';
@@ -46,43 +45,30 @@ class _MyAppState extends State<MyApp> {
       title: 'taxiflex',
       debugShowCheckedModeBanner: false,
       theme: FlexThemeData.light(
-        scheme: FlexScheme.bigStone,
-        surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
-        blendLevel: 20,
-        appBarOpacity: 0.95,
-        subThemesData: const FlexSubThemesData(
-          blendOnLevel: 20,
-          blendOnColors: false,
-          elevatedButtonRadius: 10.0,
-          outlinedButtonRadius: 10.0,
-          inputDecoratorBorderType: FlexInputBorderType.underline,
-          inputDecoratorUnfocusedBorderIsColored: false,
-          dialogRadius: 10.0,
-          timePickerDialogRadius: 10.0,
-        ),
-        visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: true,
-        fontFamily: GoogleFonts.poppins().fontFamily,
-      ),
-      darkTheme: FlexThemeData.dark(
-        scheme: FlexScheme.bigStone,
-        surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
-        blendLevel: 15,
-        appBarStyle: FlexAppBarStyle.background,
-        appBarOpacity: 0.90,
-        subThemesData: const FlexSubThemesData(
-          blendOnLevel: 30,
-          elevatedButtonRadius: 10.0,
-          outlinedButtonRadius: 10.0,
-          inputDecoratorBorderType: FlexInputBorderType.underline,
-          inputDecoratorUnfocusedBorderIsColored: false,
-          dialogRadius: 10.0,
-          timePickerDialogRadius: 10.0,
-        ),
-        visualDensity: FlexColorScheme.comfortablePlatformDensity,
-        useMaterial3: true,
-        fontFamily: GoogleFonts.poppins().fontFamily,
-      ),
+  scheme: FlexScheme.bigStone,
+  surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
+  blendLevel: 20,
+  appBarOpacity: 0.95,
+  subThemesData: const FlexSubThemesData(
+    blendOnLevel: 20,
+    blendOnColors: false,
+    inputDecoratorUnfocusedBorderIsColored: false,
+  ),
+  visualDensity: FlexColorScheme.comfortablePlatformDensity,
+),
+darkTheme: FlexThemeData.dark(
+  scheme: FlexScheme.bigStone,
+  surfaceMode: FlexSurfaceMode.highScaffoldLowSurface,
+  blendLevel: 15,
+  appBarOpacity: 0.90,
+  subThemesData: const FlexSubThemesData(
+    blendOnLevel: 30,
+    inputDecoratorUnfocusedBorderIsColored: false,
+  ),
+  visualDensity: FlexColorScheme.comfortablePlatformDensity,
+
+),
+
       themeMode: ThemeMode.system,
       home: const SplashScreen(),
     );

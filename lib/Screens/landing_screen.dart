@@ -27,12 +27,13 @@ class LandingScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height * 0.60,
             width: double.maxFinite,
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-              stops: const [0.5, 1],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Theme.of(context).canvasColor, Colors.transparent],
-            )),
+              gradient: LinearGradient(
+                stops: const [0.5, 1],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Theme.of(context).canvasColor, Colors.transparent],
+              ),
+            ),
             child: Padding(
               padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
               child: Column(

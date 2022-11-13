@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:provider/provider.dart';
+import 'package:unicons/unicons.dart';
+import 'package:http/http.dart' as http;
 
+import '../Helper/secrets.dart';
+import '../Models/models.dart';
 import '../Services/services.dart';
 
 class AllRoutesScreen extends StatelessWidget {
-  const AllRoutesScreen({Key? key}) : super(key: key);
+   AllRoutesScreen({Key? key}) : super(key: key);
+  String apiKey = googleMapsKey;
+  String radius = "30";
+  double latitude = -26.236141931462093;
+  double longitude = 27.90543208051695;
+
+  NearbyPlacesResponse nearbyPlacesResponse = NearbyPlacesResponse();
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +25,10 @@ class AllRoutesScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("All Routes"),
+        title: const Text("Available Routes"),
       ),
-      body: StreamBuilder(
+      body:
+       StreamBuilder(
         stream: shortRouteService.readAllShortRoutes(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -48,7 +59,7 @@ class AllRoutesScreen extends StatelessWidget {
                       contentPadding: const EdgeInsets.all(12),
                       tileColor: Theme.of(context).cardColor,
                       trailing: const Icon(
-                        Icons.bookmark_border_outlined,
+                    UniconsLine.bookmark,
                       ),
                       leading: const Icon(
                         Icons.circle,

@@ -2,14 +2,17 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:marker_icon/marker_icon.dart';
 import 'package:provider/provider.dart';
 import 'package:taxiflex/Screens/screens.dart';
+import 'package:unicons/unicons.dart';
 import 'package:we_slide/we_slide.dart';
 
 import '../Services/services.dart';
 import '../Utils/utils.dart';
+import 'checkout_page.dart';
 
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
@@ -90,6 +93,25 @@ class _MapScreenState extends State<MapScreen> with WidgetsBindingObserver {
     }
   }
 
+  //* QR Scanning initialisation and execution
+  String _scanBarcode = 'Unknown';
+
+  Future<void> scanQR() async {
+    String barcodeScanRes;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+          '#ff6666', 'Cancel', true, ScanMode.QR);
+      print(barcodeScanRes);
+    } on PlatformException {
+      barcodeScanRes = 'Failed to get platform version.';
+    }
+    if (!mounted) return;
+    setState(() {
+      _scanBarcode = barcodeScanRes;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     const double panelMinSize = 60.0;
@@ -103,8 +125,36 @@ class _MapScreenState extends State<MapScreen> with WidgetsBindingObserver {
       extendBody: true,
       drawer: Drawer(
         child: Column(
-          children: [SizedBox(height: 30),
-            Text("Hello, ${sp.uidR}"),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 46),
+            Text(" Welcome back,\n ${sp.name}",style: TextStyle(fontSize: 24),),
+                        Divider(),
+
+
+            ListTile(
+              onTap: () {
+              },
+              title: const Text("Payment"),
+              trailing: const Icon(UniconsLine.card_atm),
+            ),ListTile(
+              onTap: () {
+              },
+              title: const Text("Promotions"),
+              trailing: const Icon(UniconsLine.tag),
+            ),ListTile(
+              onTap: () {
+              },
+              title: const Text("Support"),
+              trailing: const Icon(UniconsLine.question_circle),
+            ),
+            ListTile(
+              onTap: () {
+              },
+              title: const Text("About"),
+              trailing: const Icon(UniconsLine.info_circle),
+            ),
+            Divider(),
             const Spacer(),
             ListTile(
               onTap: () {
@@ -113,8 +163,34 @@ class _MapScreenState extends State<MapScreen> with WidgetsBindingObserver {
               },
               title: const Text("Sign Out"),
               trailing: const Icon(Icons.logout_outlined),
-            )
+              tileColor: Theme.of(context).colorScheme.errorContainer,
+            ),
           ],
+        ),
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 60),
+        child: FloatingActionButton(
+          onPressed: (() => scanQR().then(
+                (value) {
+                  var dataList = _scanBarcode.split('ZAR');
+                  String driverID = dataList[0];
+                  String Cost = dataList[1];
+                  Rapyd rapyd = Rapyd(double.parse(Cost));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CheckOutScreen(
+                          rapyd: rapyd,
+                          cost: double.parse(Cost),
+                          driverID: driverID),
+                    ),
+                  );
+                },
+              )),
+          elevation: 10,
+          child: Icon(UniconsLine.qrcode_scan),
+          tooltip: "This initiates the QR Scanning process",
         ),
       ),
       appBar: AppBar(
@@ -123,12 +199,17 @@ class _MapScreenState extends State<MapScreen> with WidgetsBindingObserver {
           padding: const EdgeInsets.all(8.0),
           child: Container(
             decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xff60748A), Color(0xff1A2C42)],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
               shape: BoxShape.circle,
               color: Theme.of(context).primaryColor,
             ),
             child: IconButton(
               icon: Icon(
-                Icons.menu,
+                UniconsLine.bars,
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
               onPressed: () {
@@ -142,12 +223,17 @@ class _MapScreenState extends State<MapScreen> with WidgetsBindingObserver {
             padding: const EdgeInsets.all(8.0),
             child: Container(
               decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Color(0xff60748A), Color(0xff1A2C42)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
                 shape: BoxShape.circle,
                 color: Theme.of(context).primaryColor,
               ),
               child: IconButton(
                 icon: Icon(
-                  Icons.notifications_outlined,
+                  UniconsLine.bell,
                   color: Theme.of(context).colorScheme.onPrimary,
                 ),
                 onPressed: () => Navigator.push(

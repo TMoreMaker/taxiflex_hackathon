@@ -264,7 +264,7 @@ class _RiderSignInState extends State<RiderSignIn> {
                                                     sp.setSignInAsRider().then(
                                                   (value) {
                                                     nextScreenReplace(context,
-                                                        const HomeNav());
+                                                        const HomeNav(),);
                                                   },
                                                 ),
                                               ),

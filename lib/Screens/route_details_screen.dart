@@ -141,6 +141,11 @@ class _RouteDetailsScreenState extends State<RouteDetailsScreen>
           child: Container(
             decoration: BoxDecoration(
               shape: BoxShape.circle,
+              gradient: LinearGradient(
+                colors: [Color(0xff60748A), Color(0xff1A2C42)],
+                begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              ),
               color: Theme.of(context).primaryColor,
             ),
             child: IconButton(
@@ -160,6 +165,8 @@ class _RouteDetailsScreenState extends State<RouteDetailsScreen>
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.5,
             child: GoogleMap(
+              compassEnabled: false,
+              myLocationButtonEnabled: false,
               initialCameraPosition: _initialPosition,
               markers: Set.from(_markers),
               polylines: Set<Polyline>.of(polylines.values),
