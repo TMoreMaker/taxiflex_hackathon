@@ -1,17 +1,19 @@
 # taxiflex
 
-Testing details no longer public
+Testing details 
+>Note that for testing purposes, location has been set to a South African  geolocation
 
 ## Sign In Instructions
 The following phone number & sms pins can be used by testers
 
-phone driver: 
-pin driver: 
+phone rider: (+27) 72 272 8247
+pin rider: 111 111
 
-phone rider: 
-pin rider: 
+## Follow these steps to install the APK on a connected Android device.
 
-##To run on your computer
-- Make sure you have the *[Flutter SDK](https://docs.flutter.dev/get-started/install)* installed and configured on your system.
-- Download this repo
-- Open with your favourite code editor and run "flutter rub"
+From the command line:
+
+1. Connect your Android device to your computer with a USB cable.
+2. Enter cd [project].
+3. Run flutter install.
+
