@@ -19,3 +19,5 @@ From the command line:
 2. Enter cd [project].
 3. Run flutter install.
 
+##Driver QR Code Example
+Scan this [QR Code](https://drive.google.com/file/d/1ckkDQ4OE8_A_lVxvD2RrXY8aqGb8XXNr/view?usp=sharing) from the rider side of the app. It represents a typical Driver QR Code.
